@@ -63,3 +63,9 @@ Suban su `registro_estudiantes.cpp` corregido a su repositorio, y agreguen al fi
 | 3 | registrarCalificaciones()|El ciclo usaba la condición i <= si pasábamos 5 como cantidad, intentaba escribir en el índice 5, el cual no es posible porque el arreglo es de 5 elementos |Cambie la condición de salida del ciclo a i < |
 | 4 |liberarGrupo() |Se utilizaba un delete sin corchetes para liberar la memoria pero el grupo fue declarado como un arreglo usando new[]. Esto provoca que no se libere todo el bloque de memoria | Cambie la instrucción delete grupo; por delete[] grupo;|
 | 5 |liberarGrupo|Tras liberar la memoria, el puntero seguía conservando la misma dirección|Modifique la función para recibir el puntero por referencia y le asigné nullptr inmediatamente después de usar delete|
+
+
+
+SE USO AYUDA DE IA PARA LO SIGUIENTE :
+
+indicaciones para clonar el repositorio y crear uno nuevo , configurar correctamente -Wall y para interpretar el punto 2 ya que no lograba entender del todo como funcionaba esa parte del codigo 
