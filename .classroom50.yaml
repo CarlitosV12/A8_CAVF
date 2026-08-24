@@ -1,0 +1,12 @@
+schema: "classroom50/repo-config/v1"
+classroom: "pac-ad2026"
+assignment: "a8"
+owner:
+  username: "CarlitosV12"
+  id: 180053544
+  accepted_at: "2026-08-24T16:21:46Z"
+source:
+  owner: "PMVG-FCFM-AD2026"
+  owner_id: 313567445
+  repo: "A8_PACAD2026"
+  branch: "main"
