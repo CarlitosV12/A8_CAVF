@@ -58,7 +58,7 @@ Suban su `registro_estudiantes.cpp` corregido a su repositorio, y agreguen al fi
 
 | # | ¿Dónde estaba la falla? | ¿Por qué era un problema? | ¿Cómo la corrigieron? |
 |---|---|---|---|
-| 1 | | | |
+| 1 |calcularPromedio() |Retornaba la dirección de memoria |Cambié el tipo de valor a int para devolver el valor directamente en lugar de un puntero y modificar tambien en el main|
 | 2 | | | |
 | 3 | | | |
 | 4 | | | |
