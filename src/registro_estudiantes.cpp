@@ -47,8 +47,10 @@ int calcularPromedio(Estudiante e) {
 
 // Registra el nombre de un estudiante a partir de una cadena de entrada.
 void registrarNombre(Estudiante &e, const char* nombreIngresado) {
+    
     strncpy(e.nombre, nombreIngresado, sizeof(e.nombre) - 1);
-    e.nombre[sizeof(e.nombre) - 1] = '\0'; // Garantizar terminación nula
+    
+    e.nombre[sizeof(e.nombre)-1] = '\0'; // Garantizar terminación nula
 }
 
 // Registra las calificaciones de un estudiante.
