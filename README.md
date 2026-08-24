@@ -59,7 +59,7 @@ Suban su `registro_estudiantes.cpp` corregido a su repositorio, y agreguen al fi
 | # | ¿Dónde estaba la falla? | ¿Por qué era un problema? | ¿Cómo la corrigieron? |
 |---|---|---|---|
 | 1 |calcularPromedio() |Retornaba la dirección de memoria |Cambié el tipo de valor a int para devolver el valor directamente en lugar de un puntero y modificar tambien en el main|
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
+| 2 | registrarNombre()|Al intentar almacenar un nombre muy largo se desbordaba |Reemplace strcpy por strncpy() para limitar la copia al tamaño máximo del arreglo y agregue tambien el caracter nulo|
+| 3 | registrarCalificaciones()|El ciclo usaba la condición i <= si pasábamos 5 como cantidad, intentaba escribir en el índice 5, el cual no es posible porque el arreglo es de 5 elementos |Cambie la condición de salida del ciclo a i < |
+| 4 |liberarGrupo() |Se utilizaba un delete sin corchetes para liberar la memoria pero el grupo fue declarado como un arreglo usando new[]. Esto provoca que no se libere todo el bloque de memoria | Cambie la instrucción delete grupo; por delete[] grupo;|
+| 5 |liberarGrupo|Tras liberar la memoria, el puntero seguía conservando la misma dirección|Modifique la función para recibir el puntero por referencia y le asigné nullptr inmediatamente después de usar delete|
