@@ -1,0 +1,37 @@
+;; 1. Implementación de keysets (Requerido para administrar el contrato)
+(define-keyset 'admin-keyset)
+
+;; Definición del módulo (Smart Contract) protegido por el keyset
+(module hello-world-contract 'admin-keyset
+  "Contrato inteligente básico de Hello World"
+
+  ;; Definir la estructura de la tabla (Schema)
+  (defschema esquema-nombre
+    nombre:string
+  )
+
+  ;; Crear la referencia a la tabla usando el esquema
+  (deftable tabla-nombres:{esquema-nombre})
+
+  ;; 2. Función que almacena la variable del nombre en una tabla
+  (defun guardar-nombre (id:string nuevo-nombre:string)
+    @doc "Guarda un nombre en la tabla bajo un ID específico"
+    
+    (insert tabla-nombres id {
+      "nombre": nuevo-nombre
+    })
+    (format "Se guardó el nombre: {}" [nuevo-nombre])
+  )
+
+  ;; 3. Función que salude al nombre almacenado en la tabla
+  (defun saludar (id:string)
+    @doc "Busca el nombre en la tabla por su ID y devuelve el saludo"
+    
+    (with-read tabla-nombres id { "nombre" := nombre-guardado }
+      (format "Hello world, {}!" [nombre-guardado])
+    )
+  )
+)
+
+;; Instrucción para inicializar la tabla en la blockchain
+(create-table tabla-nombres)
