@@ -32,3 +32,37 @@
 
 ;; Crear la tabla
 (create-table tabla-nombres)
+
+
+
+
+
+
+
+
+
+
+
+
+(begin-tx)
+;; Inyectar las claves en el entorno
+(env-data { "admin-keyset": { "keys": ["clave-admin"], "pred": "keys-all" } })
+
+;; Crear el namespace "free" en la base de datos simulada usando el keyset anterior
+(define-namespace "free" (read-keyset "admin-keyset") (read-keyset "admin-keyset"))
+
+;; Cargar el contrato
+(load "hellopact.pact")
+(commit-tx)
+
+
+(begin-tx)
+;; Llamar al módulo usando su prefijo de namespace
+(use free.hello-world-contract)
+
+;; Llamar a la función para guardar un nombre
+(guardar-nombre "ID-001" "Carlos")
+
+;; Llamar a la función para saludar
+(saludar "ID-001")
+(commit-tx)
