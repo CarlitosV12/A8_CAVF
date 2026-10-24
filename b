@@ -45,19 +45,22 @@
 
 
 (begin-tx)
-;; Inyectar las claves en el entorno
+
+;; 1. Proveer los datos del keyset al entorno
 (env-data { "admin-keyset": { "keys": ["clave-admin"], "pred": "keys-all" } })
 
-;; Crear el namespace "free" en la base de datos simulada usando el keyset anterior
-(define-namespace "free" (read-keyset "admin-keyset") (read-keyset "admin-keyset"))
+;; 2. "Firmar" la transacción con la clave del administrador para que no marque error
+(env-keys ["clave-admin"])
 
-;; Cargar el contrato
+;; 3. Crear el namespace "free" y cargar el contrato
+(define-namespace "free" (read-keyset "admin-keyset") (read-keyset "admin-keyset"))
 (load "hellopact.pact")
+
 (commit-tx)
 
 
 (begin-tx)
-;; Llamar al módulo usando su prefijo de namespace
+;; Llamar al módulo
 (use free.hello-world-contract)
 
 ;; Llamar a la función para guardar un nombre
