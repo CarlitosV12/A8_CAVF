@@ -35,3 +35,45 @@
 
 ;; Instrucción para inicializar la tabla en la blockchain
 (create-table tabla-nombres)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;; 1. Iniciar la transacción para cargar el contrato
+(begin-tx)
+
+;; Inyectar el keyset simulado en el entorno para que el contrato pase la validación
+(env-data { "admin-keyset": { "keys": ["clave-admin"], "pred": "keys-all" } })
+
+;; Cargar el archivo principal de tu Smart Contract
+(load "hello_world.pact")
+
+(commit-tx)
+
+
+;; 2. Iniciar una nueva transacción para probar las funciones
+(begin-tx)
+
+;; Usar el módulo que acabamos de cargar
+(use hello-world-contract)
+
+;; Llamar a la función para guardar un nombre en la tabla
+(guardar-nombre "ID-001" "Carlos")
+
+;; Llamar a la función para leer el nombre y saludar
+(saludar "ID-001")
+
+(commit-tx)
